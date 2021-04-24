@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <title>Activity 4</title>
+</head>
+<style>
+    body {
+        background-image: url("background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    table,
+    th {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <nav class="bg-dark pb-4">
+        <h2 class="text-center text-white pt-4">MQTT over Web Socket</h2>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-danger">
+                        <h3 class="text-center">Broker</h3>
+                    </div>
+                    <div class="card-body bg-dark controls">
+                        <label for="" class="text-danger">Address:</label><br>
+                        <input id="broker-address" type="text" class="form-control"
+                            value="wss://test.mosquitto.org:8081/mqtt">><br>
+                        <button id="broker-btn-con" class="btn btn-danger">Connect</button>
+                        <button id="broker-btn-dis" class="btn btn-warning">Disconnect</button><br>
+                        <label  class="text-danger">Status:</label><br>
+                        <div class="input-group">
+                            <input id="broker-status" type="text" class="form-control" name="status" value="" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-warning">
+                        <h3 class="text-center">Publish</h3>
+                    </div>
+                    <div class="card-body bg-dark">
+                        <label for="" class="text-warning">Topic:</label><br>
+                        <input id="pub-topic" type="text" class="form-control"><br>
+                        <label for="" class="text-warning">Payload:</label>
+                        <input id="pub-payload" type="text" class="form-control"><br>
+                        <button id="pub-btn" class="btn btn-warning">Publish</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-success">
+                        <h3 class="text-center">Subscribe</h3>
+                    </div>
+                    <div class="card-body bg-dark">
+                        <label for="" class="text-success">Topic:</label><br>
+                        <input id="sub-topic" type="text" class="form-control"><br>
+                        <button id="sub-btn" class="btn btn-success">Subscribe</button>
+                        <button id="unsub-btn" class="btn btn-danger">Unsubscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-danger">
+                        <h3 class="text-center">Incoming Messages</h3>
+                    </div>
+                    <table class="card-table">
+                        <thead>
+                            <tr class="bg-dark">
+                                <th class="text-danger">Topic</th>
+                                <th class="text-danger">Payload</th>
+                                <th class="text-danger">Time Stamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-broker">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-warning">
+                        <h3 class="text-center">Published Messages</h3>
+                    </div>
+                    <table class="card-table">
+                        <thead>
+                            <tr class="bg-dark">
+                                <th class="text-warning">Topic</th>
+                                <th class="text-warning">Payload</th>
+                                <th class="text-warning">Time Stamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-pub">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-3">
+                    <div class="card-header bg-success">
+                        <h3 class="text-center">Subscribe Messages</h3>
+                    </div>
+                    <table class="card-table">
+                        <thead>
+                            <tr class="bg-dark">
+                                <th class="text-success">Topic</th>
+                                <th class="text-success">Time Stamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-sub">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./browserMqtt.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
